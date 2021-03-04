@@ -17,9 +17,13 @@ namespace Business.Constants
         public static string CarisRented= "Car is rented";
         public static string CustomerAdded = "Customer is Added";
         public static string UserAdded = "User is Added";
-        internal static string ColorAdded;
-        internal static string ColorDeleted;
-        internal static string ColorUpdated;
-        internal static string CustomerDeleted;
+        public static string ColorAdded = "Color is added";
+        public static string ColorDeleted = "Color is deleted succesefully";
+        public static string ColorUpdated = "Color is updated";
+        public static string CustomerDeleted = "Customer is deleted succesfully";
+        public static string CarImageAdded = "Image is added";
+        public static string FileUploaded = "File is uploaded";
+        public static string ThisCarHasAlreadyFiveImages = "This car has already five cars,so you cannot add image for this car";
+        public static string ThereisNoImage = "There is no image buddy,Sorry.";
     }
 }
