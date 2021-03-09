@@ -1,5 +1,5 @@
 ﻿using Business.Abstract;
-using Entities.Concrete;
+using Core.Entities.Concrete;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -62,7 +62,7 @@ namespace WebAPI.Controllers
         [HttpGet("getemail")]
         public IActionResult GetByEmail(string email)
         {
-            var result = _userManager.GetUsersByEmail(email);
+            var result = _userManager.GetUserByEmail(email);
             if (result.Success)
             {
                 return Ok(result.Data);

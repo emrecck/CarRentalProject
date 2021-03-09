@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Core.Entities.Concrete;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -25,5 +26,11 @@ namespace Business.Constants
         public static string FileUploaded = "File is uploaded";
         public static string ThisCarHasAlreadyFiveImages = "This car has already five cars,so you cannot add image for this car";
         public static string ThereisNoImage = "There is no image buddy,Sorry.";
+        public static string UserNotFound = "User not found";
+        public static string PasswordError = "Password is wrong";
+        public static string LoginSuccessfully = "Login successfully";
+        public static string UserAlreadyExist = "User already exist";
+        public static string RegisteredSuccesfully = "Registered successfully";
+        public static string AccessTokenCreated = "Access Token Created";
     }
 }

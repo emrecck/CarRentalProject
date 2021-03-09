@@ -155,15 +155,15 @@ namespace ConsoleUI
             }
         }
 
-        private static void UserTest()
-        {
-            UserManager userManager = new UserManager(new EfUserDal());
-            var users = userManager.GetUsers();
-            foreach (var item in users.Data)
-            {
-                Console.WriteLine("{0} / {1} / {2} / {3} / {4}", item.Id, item.FirstName, item.LastName, item.Email, item.Password);
-            }
-        }
+        //private static void UserTest()
+        //{
+        //    UserManager userManager = new UserManager(new EfUserDal());
+        //    var users = userManager.GetUsers();
+        //    foreach (var item in users.Data)
+        //    {
+        //        Console.WriteLine("{0} / {1} / {2} / {3} / {4}", item.Id, item.FirstName, item.LastName, item.Email, item.Password);
+        //    }
+        //}
 
         private static void CustomerTest()
         {

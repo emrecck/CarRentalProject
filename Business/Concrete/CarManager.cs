@@ -1,6 +1,8 @@
 ﻿using Business.Abstract;
 using Business.Constants;
 using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Caching;
+using Core.Aspects.Autofac.Transaction;
 using Core.Aspects.Autofac.Validation;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
@@ -23,26 +25,11 @@ namespace Business.Concrete
             _carDal = carDal;
         }
         [ValidationAspect(typeof(CarValidator))]
+        [CacheRemoveAspect("ICarService.Get")]
         public IResult Add(Car car)
         {
-            //var context = new ValidationContext<Car>(car);
-            //var result = new CarValidator().Validate(context);
-            //if (!result.IsValid)
-            //{
-            //    throw new ValidationException(result.Errors);
-            //}
             _carDal.Add(car);
             return new SuccessResult(Messages.CarAdded);
-            //if (car.Description.Length >= 2 && car.DailyPrice > 0)
-            //{
-            //    _carDal.Add(car);
-            //    return new SuccessResult(Messages.CarAdded);
-            //}
-            //else
-            //{
-            //    return new ErrorResult(Messages.CarDescriptionInvalid);
-            //}
-
         }
 
         public IResult Delete(Car car)
@@ -54,7 +41,7 @@ namespace Business.Concrete
             _carDal.Delete(car);
             return new SuccessResult(Messages.CarDeleted);
         }
-        
+        [CacheAspect(20)]
         public IDataResult<List<Car>> GetAll()
         {
             if (DateTime.Now.Hour == 22)
@@ -108,6 +95,13 @@ namespace Business.Concrete
         public IDataResult<List<CarDetailDto>> GetCarsByColorName(string colorName)
         {
             return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetails(cd => cd.ColorName == colorName));
+        }
+        [TransactionScopeAspect]
+        public IResult TransactionalOperation(Car car)        // Transaction Test operation 
+        {
+            _carDal.Update(car);
+            _carDal.Add(car);
+            return new SuccessResult(Messages.CarUpdated);
         }
 
         public IResult Update(Car car)
